@@ -17,6 +17,7 @@
 ## 目录
 
 - [收录范围](#收录范围)
+- [匿名模型（Stealth）](#匿名模型stealth)
 - [模型免费渠道索引](#模型免费渠道索引)
 - [免费渠道一览](#免费渠道一览)
   - [海外官方免费层](#海外官方免费层)
@@ -41,6 +42,31 @@
 | **限时/限量免费** | 明确标注"限时免费 / Limited-Time Free / 限量免费"的模型或渠道 | `limited-free` |
 
 以上都限定为 **API 层面的免费**：能申请 API Key、能通过 HTTP endpoint / SDK 程序化调用。仅网页对话免费（如各家官网的 Chat 页面）不在此列。
+
+## 匿名模型（Stealth）
+
+> 本节收录**不公开身份**的模型：没有厂商名、没有可考的模型代号，只有一个代号和一份限时免费的上游合约。它们**不适合放进下面的具名模型索引**（无处落脚，也无从判断强弱），因此单独成节。
+
+匿名模型的性质需要先说清楚，它们和其他渠道不是一回事：
+
+| 特征 | 说明 |
+|------|------|
+| **身份不明** | 开发者不公开，`tokenizer` 多数标 `Other`；有第三方测评发现其 tokenizer 指纹接近 MiniMax 家族，但这**只是指纹相似，不等于官方确认**，不要按 MiniMax 对待 |
+| **随时消失** | 没有任何公开的稳定性承诺，通常是发布前的短期评测窗口，说不准哪天就下架或换成付费 |
+| **能力无基线** | 没有公开 benchmark 榜单，模型索引里那些"上下文多大、编码能力如何"的说法都来自单方测评，不可当结论 |
+| **隐私条款因渠道而异** | 同一模型在不同网关的数据处理政策**完全不同**，有的零保留不训练，有的明确写"免费期数据可用于改进模型"——见下表逐条标注 |
+
+| 模型 | 免费渠道 | 免费形式 | 上下文 / 输出 | 数据政策 | 备注 |
+|------|------|------|------|------|------|
+| **Space Bunny Alpha** | [OpenRouter](https://openrouter.ai) | 限时免费（`stealth/space-bunny-alpha`，输入/输出均 $0） | 1M / 524,288 | ⚠️ 官方原文：prompt 与 completion **可能被上游保留**，但**不用于训练** | ✅ 实测 pricing 字段 `prompt=0`、`completion=0`；3 天可用率 98.82%、吞吐 89 tok/s、TTFT 1.36s |
+| **Space Bunny Alpha** | [OpenCode Zen](https://opencode.ai/zen) | 限时免费（`space-bunny-free`，Input / Output / Cached Read 三档均 $0） | 1M / 524,288 | ✅ **零保留、不用于训练**（Zen 官方原文） | 两条通道 ID 不同：Zen 带 `-free` 后缀，OpenRouter **不带** `:free` 后缀 |
+| **Big Pickle** | [OpenCode Zen](https://opencode.ai/zen) | 限时免费（`big-pickle`，三档均 $0） | 官方未公布 | ⚠️ Zen 隐私页列为例外：**免费期收集的数据可能用于改进模型** | 仅在 Zen 提供，OpenRouter 目录中查无此模型 |
+
+- **接入**：
+  - OpenRouter：`POST https://openrouter.ai/api/v1/chat/completions`，模型名 `stealth/space-bunny-alpha`（**不要加 `:free` 后缀，加了会 404**）
+  - OpenCode Zen：`POST https://opencode.ai/zen/v1/chat/completions`，模型名 `space-bunny-free` / `big-pickle`（`@ai-sdk/openai-compatible`）
+- **状态**：限时免费 — 核实于 2026-09-27（两款均为 OpenCode Zen 官方标注的 stealth model，原文均为 *"free on OpenCode for a limited time"*，官方说明是 *"The team is using this time to collect feedback and improve the model"*。Space Bunny 首发公告为"免费一周"，约 2026-09-30 到期，**无公开截止日期**。Space Bunny 同时可经 Onomeo 签到额度调用，实测单次消耗 1,932，签到满额 20 万约可调 103 次）
+- ⚠️ **使用建议**：只当评测端点用，**不要放进生产链路**。匿名模型的身份、长期定价、数据处理承诺全部悬空，且可能随时消失；敏感数据是否可发送，取决于你实际用的那家网关的条款（Zen 的 Space Bunny 零保留，OpenRouter 的则可能保留）。
 
 ## 模型免费渠道索引
 
@@ -588,7 +614,7 @@
 - **免费形式**：永久免费（`:free` 模型 50 次/天，20 次/分钟；累计充值 $10 后升至 1000 次/天）
 - **网页说明**：多模型聚合路由，官网提供 `:free` 免费模型清单，`openrouter/free` 可自动路由（⚠️ 网传「200 次/天」为过时信息，官方限速页现行标准为 50/1000）
 - **免费模型**：`thinkingmachines/inkling(-small)`（1M 上下文多模态）、`nvidia/nemotron-3-ultra-550b`、`nemotron-3-super-120b`、`nemotron-3.5-lightning`、`gemma-4-26b-a4b`、`gemma-4-31b`、`inclusionai/ling-3.0-flash-sante/-fin/-vl`、`nex-agi/nex-n2.5-pro/-mini`、`cohere/north-mini-code`、`poolside/laguna-s-2.1/-xs-2.1`、`dots-studio/dots-3-note-preview`（512K）、`liquid/lfm-2.5-2.6b` 等 **19 个**（**名单随时轮换**——**DeepSeek / GLM / Qwen / MiniMax / Kimi 均不在免费名单**，用前先查 `openrouter.ai/models?max_price=0`）
-- **接入**：`https://openrouter.ai/api/v1`（模型名务必带 `:free` 后缀）
+- **接入**：`https://openrouter.ai/api/v1`（绝大多数模型名需带 `:free` 后缀；⚠️ 例外是 `stealth/space-bunny-alpha`，它没有后缀且定价已为 0，加了后缀反而 404，详见[匿名模型](#匿名模型stealth)）
 - **状态**：Active — 核实于 2026-09-27（免费名单已实测刷新：**17 个** `:free` 模型（9/20 为 21 个）——**退出：`z-ai/glm-5.2`、Nex AGI N2.5 mini/pro、`ling-3.0-flash-vl` 共 4 款，本周无新增**；在列的仍有 Qwen3.8-27B、Gemma 4 两款、Nemotron 五款、Poolside Laguna 两款、Thinking Machines Inkling 两款、Ling 3.0 Flash Fin/Sante、Liquid LFM 2.5、Cohere North Mini Code。每日额度 50 次，充值 $10 后 1000 次。⚠️ 免费池一周可换 4 款，「发布当天进免费池」是冷启动信号而非长期承诺，务必留 fallback）
 
 #### AIHubMix

@@ -16,6 +16,7 @@ This list covers only APIs you can **keep calling** for free — **permanently f
 ## Table of Contents
 
 - [Scope](#scope)
+- [Stealth Models](#stealth-models)
 - [Model Index](#model-index)
 - [Free Channels](#free-channels)
   - [Official free tiers (global)](#official-free-tiers-global)
@@ -40,6 +41,31 @@ Only **two** categories:
 | **Limited / time-limited free** | Models or channels explicitly labeled "Limited-Time Free / Limited Free" | `limited-free` |
 
 All of the above is **API-level free**: you get an API key and call it over an HTTP endpoint / SDK. A free web chat UI (e.g. a provider's chat page) does **not** count.
+
+## Stealth Models
+
+> Models that **do not reveal who is behind them**: no vendor name, no verifiable model codename — just a handle and a limited-time free upstream deal. They don't fit the named model index below (nowhere to put them, no way to judge strength), so they get their own section.
+
+Stealth models are not like the other channels in this list. Up front, the properties that matter:
+
+| Property | What it means |
+|----------|---------------|
+| **Identity unknown** | The developer is undisclosed and the `tokenizer` is usually reported as `Other`. Third-party testing has found a tokenizer fingerprint close to the MiniMax family — that is **fingerprint similarity, not official confirmation**, so don't treat it as a MiniMax model |
+| **Can vanish at any time** | There is no public stability commitment. These are typically short evaluation windows ahead of a launch; there is no telling when the model is pulled or switched to paid |
+| **No capability baseline** | No public benchmark leaderboard. Claims about context size or coding ability come from single-party reviews and should not be treated as conclusions |
+| **Privacy terms differ by channel** | The **same model** has completely different data-handling policies on different gateways — some zero-retention and no-training, some explicitly stating "data collected during the free period may be used to improve the model". See the table below |
+
+| Model | Free channel | Free tier | Context / Max output | Data policy | Notes |
+|-------|--------------|-----------|----------------------|-------------|-------|
+| **Space Bunny Alpha** | [OpenRouter](https://openrouter.ai) | Limited-time free (`stealth/space-bunny-alpha`, $0 input and output) | 1M / 524,288 | ⚠️ Official wording: prompts and completions **may be retained** by the provider, but are **not used for training** | ✅ Measured `pricing` fields `prompt=0`, `completion=0`; 3-day availability 98.82%, throughput 89 tok/s, TTFT 1.36s |
+| **Space Bunny Alpha** | [OpenCode Zen](https://opencode.ai/zen) | Limited-time free (`space-bunny-free`, $0 across Input / Output / Cached Read) | 1M / 524,288 | ✅ **Zero retention, not used for training** (OpenCode Zen's own wording) | The model ID differs per channel: Zen uses the `-free` suffix, OpenRouter has **no** `:free` suffix |
+| **Big Pickle** | [OpenCode Zen](https://opencode.ai/zen) | Limited-time free (`big-pickle`, $0 across all three tiers) | Not published | ⚠️ Listed as an exception on Zen's privacy page: **data collected during the free period may be used to improve the model** | Zen only — no such model in the OpenRouter catalog |
+
+- **Endpoints**:
+  - OpenRouter: `POST https://openrouter.ai/api/v1/chat/completions`, model `stealth/space-bunny-alpha` (**do not append a `:free` suffix — that returns 404**)
+  - OpenCode Zen: `POST https://opencode.ai/zen/v1/chat/completions`, model `space-bunny-free` / `big-pickle` (`@ai-sdk/openai-compatible`)
+- **Status**: limited-time free — verified 2026-09-27 (both are labeled stealth models by OpenCode Zen, whose own wording for each is *"free on OpenCode for a limited time"* and *"The team is using this time to collect feedback and improve the model"*. Space Bunny launched with a "free for one week" announcement, roughly expiring 2026-09-30, with **no published end date**. Space Bunny is also callable through Onomeo's check-in credits at a measured 1,932 per call — about 103 calls from a full 200,000 check-in balance)
+- ⚠️ **Practical advice**: treat these as evaluation endpoints and **keep them out of production paths**. Identity, long-term pricing and data-handling commitments are all unresolved, and the model may disappear at any time. Whether sensitive data is safe to send depends on the terms of the gateway you actually use (Zen's Space Bunny is zero-retention; OpenRouter's may retain).
 
 ## Model Index
 
@@ -587,7 +613,7 @@ All of the above is **API-level free**: you get an API key and call it over an H
 - **Free tier**: permanent (`:free` models, 50 req/day and 20 req/min; 1000/day after a $10 lifetime top-up)
 - **What the site says**: multi-model router exposing a `:free` lineup; `openrouter/free` auto-routes between them (⚠️ the widely-quoted "200 req/day" is outdated — the official limits page states 50/1000)
 - **Free models**: `thinkingmachines/inkling(-small)` (1M-context multimodal), `nvidia/nemotron-3-ultra-550b`, `nemotron-3-super-120b`, `nemotron-3.5-lightning`, `gemma-4-26b-a4b`, `gemma-4-31b`, `inclusionai/ling-3.0-flash-sante/-fin/-vl`, `nex-agi/nex-n2.5-pro/-mini`, `cohere/north-mini-code`, `poolside/laguna-s-2.1/-xs-2.1`, `dots-studio/dots-3-note-preview` (512K), `liquid/lfm-2.5-2.6b` — **19 in total** (⚠️ **DeepSeek / GLM / Qwen / MiniMax / Kimi / Llama are all absent**; check `openrouter.ai/models?max_price=0` first)
-- **Endpoint**: `https://openrouter.ai/api/v1` (append `:free` to the model name)
+- **Endpoint**: `https://openrouter.ai/api/v1` (most model names need the `:free` suffix; ⚠️ the exception is `stealth/space-bunny-alpha`, which carries no suffix and is already priced at 0 — appending one returns 404. See [Stealth Models](#stealth-models))
 - **Status**: Active — verified 2026-09-27 (free lineup re-verified live: **17** `:free` models, down from 21 on 9/20 — **four left: `z-ai/glm-5.2`, Nex AGI N2.5 mini/pro and `ling-3.0-flash-vl`; nothing new this week**; still listed are Qwen3.8-27B, Gemma 4 ×2, five Nemotron variants, Poolside Laguna ×2, Thinking Machines Inkling ×2, Ling 3.0 Flash Fin/Sante, Liquid LFM 2.5 and Cohere North Mini Code. 50 req/day, 1,000 after $10. ⚠️ four models can leave in a week — "lands in the free pool on launch day" is a cold-start signal, not a long-term commitment, so always keep a fallback)
 
 #### AIHubMix

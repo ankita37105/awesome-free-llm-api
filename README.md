@@ -99,7 +99,7 @@
 | [NVIDIA NIM](https://build.nvidia.com) | 永久免费,40 RPM | 优势:官方托管、免绑卡、1.3M 上下文多模态、无每日上限;限制:40 RPM 全站共享,高峰期需排队 | 经常超时 |
 | [OrcaRouter](https://www.orcarouter.ai) | 免费池限流,零加价 | 优势:200+ 模型统一网关、0% token 加价、免卡;限制:免费额度未公开、2026-09-07 起替换 Qwen3.8-27B 成为免费默认,TTFT 偏高(约 7.66 秒) | 限流 |
 | [AMD Token Factory](https://developer.amd.com.cn/radeon/tokenfactory) | 限时免费(ZZ.ai) | 优势:AMD 官方托管、每日 $10 等值额度;限制:限时免费、TTFT 偏高、并发限流 | TTFT 偏高 |
-| [Onomeo](https://onomeo.com/zh) | 签到制每日额度(`z-ai/glm-5.3-flash-free`,3,149 额度/次,签到满额 20 万约可调 63 次) | 优势:国内直连、OpenAI 兼容、1M 上下文;限制:非免费档、需每日手动签到、单次成本较 9/22 涨约 16 倍、公测聚合平台随时可能变 |  |
+| [Onomeo](https://onomeo.com/zh) | 签到制每日额度(`z-ai/glm-5.3-flash-free`,3,149 额度/次,签到满额 20 万约可调 63 次) | 优势:国内直连、OpenAI 兼容、1M 上下文;限制:非免费档、需每日手动签到、单次成本较 9/22 涨约 16 倍、公测聚合平台随时可能变;⚠️ 同平台的旗舰 `glm-5.3`(非 flash)属 premium 款,受每日 5 万额度上限约束 |  |
 
 #### GLM 5.2 / 5.1
 
@@ -307,7 +307,7 @@
 
 | 免费渠道 | 免费形式 | 优势 / 限制 | API 质量 |
 |------|------|------|------|
-| [Onomeo](https://onomeo.com/zh) | 签到制每日额度(3,948 额度/次,签到满额 20 万约可调 50 次) | 优势:国内直连、OpenAI 兼容、旗舰款也被额度覆盖;限制:非免费档、需每日手动签到、实测可用率约 93%、公测聚合平台随时可能变 |  |
+| [Onomeo](https://onomeo.com/zh) | 签到制每日额度(3,948 额度/次,⚠️ 受 premium 每日上限约束:未付费账号约 12 次/天) | 优势:国内直连、OpenAI 兼容、旗舰款也被额度覆盖;限制:非免费档、需每日手动签到、**13 款 premium 模型另有每日 5 万额度上限**(买后 30 万)、实测可用率约 93%、公测聚合平台随时可能变 |  |
 
 #### Gemini 2.5 Flash / Flash-Lite
 
@@ -621,11 +621,12 @@
 #### Onomeo
 
 - **官网**：https://onomeo.com/zh（[模型页](https://onomeo.com/zh/models)）
-- **免费形式**：签到制每日额度（非免费档模型）——每日签到最高领 200,000 额度（官网原文「每日签到最高可领 200,000 额度，连续签到一周后即可达到」），邀请好友双方各得 50,000；另可 $5 兑换 1,000,000 额度
+- **免费形式**：签到制每日额度（非免费档模型）——每日签到最高领 200,000 额度（首日 50,000，逐日递增、连签一周达上限），邀请好友双方各得 50,000；额度来自市场调研问卷的收入（官方 FAQ：用户答问卷、调研方付费，这笔钱覆盖对应额度的调用成本），**不设过期时间**、余额上限 10,000,000
+- **付费档**：⚠️ **有 13 个「premium」大模型单独设每日消耗上限**（`premium.models` 实测）：`claude-sonnet-5`、`claude-haiku-4.5`、`gpt-6-astra`、`gpt-5.6-terra`、`gemini-3.1-pro-preview`、`kimi-k3`、`glm-5.3`、`mistral-large-3`、`nemotron-3-ultra-550b-a55b`、`claude-opus-5.5`、`gpt-6-sol`、`gpt-6-luna`、`grok-4.7`。**未购买额度的账号每日最多在这些模型上消耗 50,000 额度，购买后提高到每日 300,000**（官网 FAQ 第 13 条原文「未购买额度的账号每日最多在 Claude、GPT 等大模型上消耗 50,000 额度，购买后提高到每日 300,000」）。⚠️ 这意味着**光有签到额度也调不动旗舰款**——`gpt-6-astra` 单次 3,948，未付费账号理论上限约 **12 次/天**（50,000 ÷ 3,948），`claude-opus-5.5`、`gpt-6-sol` 各约 7 次；超限返回 402 `premium_daily_cap`（不扣额度）
 - **网页说明**：中文聚合网关，一个密钥调用 **47 个模型**（官网首页原文，2026-09-27 核实；此前记录的 54 已过时），OpenAI 兼容；⚠️ 官方明示 `usage.total_tokens` 即本次扣除额度、**每次调用并不相同**，故官网标注的成本均为「每次回答最低约 X」，实际按 token 浮动
 - **免费模型**：签到额度覆盖全目录 47 款；下表为 2026-09-27 从 `/zh/models` 内嵌数据实测的**单次最低消耗**（签到满额 20 万可调次数 = 200,000 ÷ 消耗）：`gemini-3.1-flash-lite`（9 ≈ 22,222 次，最划算）、`gemini-3-flash-preview`（21）、`poolside/laguna-s-2.1:free`（21）、`dots-3-note-preview:free`（22）、`stepfun/step-3.7-flash:free`（43）、`glm-5.3`（517 ≈ 386 次）、`gemini-3.1-pro-preview`（867）、`stealth/space-bunny-alpha`（1,932）、`deepseek-v4-flash`（2,385 ≈ 83 次）、`tencent/hy3-free`（2,712）、`gpt-6-luna`（2,917）、`gpt-6-astra`（3,948 ≈ 50 次）、`z-ai/glm-5.3-flash-free`（3,149 ≈ 63 次）、`deepseek-v4.1-flash`（8,409 ≈ 23 次）、`Qwen/Qwen3.8-Flash-Next`（41,457 ≈ 4 次，最贵）
 - **接入**：`https://onomeo.com/v1`（OpenAI 兼容；2026-09-22 实测无 key 调用返回 401 `bad_key`，国内直连可通）
-- **状态**：Active（签到制）— 核实于 2026-09-27（⚠️ **免费方式是「签到领取额度」，不是免费档**：额度当日有效、需每天手动签到；聚合自建额度池（目录里大量 `:free` 款与 OpenRouter 免费池同名，疑似转接），公测期随时可能改规则或关停。✅ 实测 47 款全部带 `training` 标记，**多数为 `trains`**（gemini 全系、gpt-6 系列、glm-5.3 等），少数 `no` / `optout` / `unknown`——**按「请求内容可能被用于训练」对待**。实测可用率（`health.ok/failed`）参差：`deepseek-v4.1-flash`、`deepseek-v4-flash`、`z-ai/glm-5.3-flash-free`、`glm-5.3` 均 100%，但 `gemini-3.7-flash` 仅 36%、`claude-opus-5.5` 57%、`cohere/north-mini-code:free` 与 `nemotron-3.5-lightning` 均 56%，无 SLA）
+- **状态**：Active（签到制）— 核实于 2026-09-27（⚠️ **免费方式是「签到领取额度」，不是免费档**：额度当日有效、需每天手动签到；聚合自建额度池（目录里大量 `:free` 款与 OpenRouter 免费池同名，疑似转接），公测期随时可能改规则或关停。✅ 实测 47 款全部带 `training` 标记，**多数为 `trains`**（gemini 全系、gpt-6 系列、glm-5.3 等），少数 `no` / `optout` / `unknown`——**按「请求内容可能被用于训练」对待**。实测可用率（`health.ok/failed`）参差：`deepseek-v4.1-flash`、`deepseek-v4-flash`、`z-ai/glm-5.3-flash-free`、`glm-5.3` 均 100%，但 `gemini-3.7-flash` 仅 36%、`claude-opus-5.5` 57%、`cohere/north-mini-code:free` 与 `nemotron-3.5-lightning` 均 56%，无 SLA。⚠️ 另有三重限流：premium 模型每日额度上限（见上）、全站 premium 预算分四批释放（UTC 00/06/12/18，每批三成预留给已购买账号，未购买账号用完即返 503 `premium_budget_exhausted` 带 `reserved:true`）、以及 5 小时窗口的账号/IP 调用次数上限（`perAccountWindowMax` 60、`perIpWindowMax` 120））
 
 #### Chutes ~~（已失效）~~
 
@@ -731,6 +732,7 @@
 - **不是所有"免费模型"都在生成文本。** Jev 这类**结构化决策模型**（输入状态 + 带类型的问题，输出选项/评分/概率）走的是 Evaluation 或 Decisions 类接口，**不能当聊天模型用**，OpenAI 兼容的 chat/completions 调用方式往往不适用。
 - **你的数据可能被用于训练。** Google（免费层）、Mistral（Experiment 计划）、Groq 以及 OpenRouter 的 `:free` 上游普遍会在免费流量上做训练，部分支持关闭。
 - **小型网关的免费额度最不稳定。** Token Harbor / BazaarLink 这类新晋网关验证有限、随时可能关停或收费，只适合原型验证，别托付生产负载。
+- **「有额度」≠「能随意调用」。** 签到制平台常对旗舰模型另设**每日消耗上限**——Onomeo 有 13 款 premium 模型，未购买额度的账号每天最多消耗 50,000 额度（购买后 30 万），所以哪怕签到攒到 20 万，`gpt-6-astra` 也只能调约 12 次/天，超限直接返 402 不扣额度。**判断能调几次要看两处：单次成本 × 每日上限，取小的那个。**
 - **「签到领额度」不是「免费档模型」。** Onomeo 这类聚合平台用签到/问卷换每日额度——全目录都能调但消耗差异极大（实测同平台内 `gemini-3.1-flash-lite` 一次 9 额度、`deepseek-v4.1-flash` 8,409、`Qwen3.8-Flash-Next` 41,457，**相差四千倍**），额度当日有效、需每天手动领取，且公测平台随时可能改规则。⚠️ **额度消耗会随上游定价上调而暴涨**——Onomeo 上 `deepseek-v4.1-flash` 5 天内从 1,473 涨到 8,409，引用「每天能调多少次」务必标注核实日期。
 - **部分境外网关对国内做区域封锁。** Token Harbor 实测直接返回 `region_blocked`，明文拒绝中国大陆/香港/澳门（2026-09-12）；此类端点即使有免费额度，国内也需自备境外网络，且官方通常要求关闭 VPN——它只能看到连接出口国。
 - **"官方注册送额度"不等于免费。** 例如 DeepSeek 官方 API 的试用赠送已确认取消（2026-08-31 实测余额为 0），官方渠道现在是"低价"而非"免费"。

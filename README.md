@@ -52,7 +52,7 @@
 
 | 免费渠道 | 免费形式 | 优势 / 限制 | API 质量 |
 |------|------|------|------|
-| [Vercel AI Gateway](https://vercel.com/ai-gateway) | ⚠️ **限时促销免费**（原价 $0.042/M 输入，输出免费） | 优势:官方渠道、零 token 加价、促销期内 0 成本；限制:⚠️ **促销 2026-09-25 结束**、**需先绑支付方式**才能启用免费额度、32K 上下文、**走 Evaluation / TypeSafe API 而非 chat/completions**、免费档限流更低 | 促销期内可用 |
+| ~~Vercel AI Gateway~~ **（Jev 促销 2026-09-25 已结束）** | ~~限时促销免费~~ → 按量计费（$0.042/M 输入，输出 $0） | ⚠️ **促销已到期**：Jev 恢复原价，不再免费；每月 $5 免费额度仍在，但仅限 Free Tier eligible 子集且**需先绑支付方式** | 促销已结束 |
 
 ### DeepSeek 系列
 
@@ -62,10 +62,11 @@
 
 | 免费渠道 | 免费形式 | 优势 / 限制 | API 质量 |
 |------|------|------|------|
+| [NVIDIA NIM](https://build.nvidia.com) | 永久免费,40 RPM | 优势:官方托管、免绑卡、无每日上限;限制:40 RPM 全站共享,高峰期需排队 | 经常超时 |
 | [Token Harbor](https://tokenharbor.ai) | 免费层月额度内(4 周滚动刷新) | 优势:小型网关、免卡注册、**Free 档明确含 V4.1 Flash**;限制:⚠️ **中国大陆/香港/澳门被区域封锁**,需境外网络;额度未公开、按 4 周滚动刷新,网关资历浅 | 区域受限 |
 | [Onomeo](https://onomeo.com/zh) | 签到制每日额度(1,473 额度/次,约 135 次/天) | 优势:国内直连、OpenAI 兼容、签到满额即可调、支持图片输入;限制:非免费档、需每日手动签到、公测聚合平台随时可能变、可用率约 83% |  |
 
-> ⚠️ **官方无免费层，第三方免费入口也很有限**：DeepSeek 官方仅付费（闲时 $0.15/$0.60 per 1M）。⚠️ **Ollama Cloud 不是免费入口**——V4.1 Flash 已上架其云目录，但属需购 credits 解锁的旗舰款，免费档只覆盖 starter 子集（2026-09-12 实测）。⚠️ **OrcaRouter 也不提供 V4.1 的免费**——`deepseek/deepseek-v4.1-flash` 在其价目表内按 $0.15/$0.60 计费，免费池只有 V4 Flash（`deepseek-v4-flash-free`）及 Hy3、GLM-5.3-Flash（2026-09-12 实测）。⚠️ **Token Harbor 有区域封锁**——实测 `https://tokenharbor.ai/v1` 返回 `region_blocked`，明确拒绝中国大陆/香港/澳门（2026-09-12 实测）。**综上，V4.1 Flash 没有任何「档位免费」入口——唯一能免费用到的是 Onomeo 的签到制每日额度（约 135 次/天，见渠道条目），且不属于免费档。**
+> ⚠️ **官方无免费层，第三方免费入口也很有限**：DeepSeek 官方仅付费（闲时 $0.15/$0.60 per 1M）。⚠️ **Ollama Cloud 不是免费入口**——V4.1 Flash 已上架其云目录，但属需购 credits 解锁的旗舰款，免费档只覆盖 starter 子集（2026-09-12 实测）。⚠️ **OrcaRouter 也不提供 V4.1 的免费**——`deepseek/deepseek-v4.1-flash` 在其价目表内按 $0.15/$0.60 计费，免费池只有 V4 Flash（`deepseek-v4-flash-free`）及 Hy3、GLM-5.3-Flash（2026-09-12 实测）。⚠️ **Token Harbor 有区域封锁**——实测 `https://tokenharbor.ai/v1` 返回 `region_blocked`，明确拒绝中国大陆/香港/澳门（2026-09-12 实测）。✅ **但 NVIDIA NIM 已上架 V4.1 Flash**（2026-09-27 实测 `deepseek-ai/deepseek-v4.1-flash` 在列，永久免费 40 RPM、免绑卡）——**这是目前 V4.1 Flash 唯一的「档位免费」入口**，Token Harbor 虽有 Free 档但对国内封锁，Onomeo 则是签到额度非免费档。**
 
 #### ~~DeepSeek V4 Pro~~（2026-09-14 起官方路由退役）
 
@@ -417,9 +418,9 @@
 - **官网**：https://build.nvidia.com
 - **免费形式**：永久免费层（40 RPM 全站共享，无每日上限）
 - **网页说明**：官网称「100+ 模型免费调用」——NVIDIA 托管的推理端点，注册即可用，无需信用卡
-- **免费模型**：DeepSeek V4 Flash 0731 / V4 Pro 0813、Kimi K2.6 / K3、**z-ai/glm-5.3-flash**、Gemma 4 31B、Nemotron 3 Ultra / Super / Nano、GPT-OSS、Mistral Large 等（以 `/v1/models` 实测为准）
+- **免费模型**：**`deepseek-ai/deepseek-v4.1-flash`（2026-09-27 新上架）** / V4 Pro 0813、Kimi K2.6 / K3、**z-ai/glm-5.3-flash**、Gemma 4 31B、Nemotron 3 Ultra / Super / Nano、GPT-OSS、Mistral Large 等（以 `/v1/models` 实测为准；⚠️ **`deepseek-v4-flash-0731` 已从列表移除**）
 - **接入**：`https://integrate.api.nvidia.com/v1`（OpenAI 兼容）
-- **状态**：Active — 核实于 2026-09-12（实测 `/v1/models` 返回 **82 个模型**；✅ **新上架 `z-ai/glm-5.3-flash`**（1.3M 上下文、多模态）；⚠️ MiniMax / Qwen / StepFun / Ling 仍不在列，GLM 5.2 / 5.1 / 4.7 亦未回归，DeepSeek V4.1 Flash 尚未上架）
+- **状态**：Active — 核实于 2026-09-27（实测 `/v1/models` 返回 **82 个模型**（数量不变但有替换）；✅ **新上架 `deepseek-ai/deepseek-v4.1-flash`**——即此前「V4.1 Flash 无免费入口」的结论对 NIM 已失效，**NIM 现为 V4.1 Flash 少数可用免费渠道之一**；⚠️ **同批移除 `deepseek-v4-flash-0731`**，V4 Flash 改用 `deepseek-coder-6.7b-instruct` 之外无 0731 档；MiniMax / Qwen / StepFun / Ling 仍不在列，GLM 5.2 / 5.1 / 4.7 亦未回归）
 
 #### Google AI Studio
 
@@ -578,11 +579,11 @@
 #### Vercel AI Gateway
 
 - **官网**：[https://vercel.com/ai-gateway](https://vercel.com/ai-gateway)（[定价页](https://vercel.com/docs/ai-gateway/pricing) · [入门文档](https://vercel.com/docs/ai-gateway/getting-started)）
-- **免费形式**：免费档含 **每月 $5 额度**（首次发出 AI Gateway 请求时开始计时），可用范围限 **Free Tier eligible 模型子集**，每模型限流低于付费档；**Jev 在促销期内标价 Free**
+- **免费形式**：免费档含 **每月 $5 额度**（首次发出 AI Gateway 请求时开始计时），可用范围限 **Free Tier eligible 模型子集**，每模型限流低于付费档；⚠️ **Jev 的限时促销已于 2026-09-25 结束，现按量计费**
 - **网页说明**：Vercel 官方托管网关，官网称「no markup and no platform fee on tokens」——按上游原价转发、零加价；免费档原文「**To use free AI Gateway Credits, add a valid payment method to your team.**」（用免费额度**必须先绑定有效支付方式**）
-- **免费模型**：**`typesafe-ai/jev`（限时促销，2026-09-25 结束）** + Free Tier eligible 模型子集（⚠️ 官方**未公布完整白名单**，需登录 dashboard 自行 browse「Free Tier models」）
+- **免费模型**：~~`typesafe-ai/jev`（限时促销已结束）~~ + Free Tier eligible 模型子集（⚠️ 官方**未公布完整白名单**，需登录 dashboard 或 [models 页 `?freeTier=true`](https://vercel.com/ai-gateway/models?freeTier=true) 自行 browse；2026-09-27 实测目录中 `*:free` 定价的仅 `inclusionai/ling-3.0-flash-sante-free`、`poolside/laguna-s-2.1-free` 两款）
 - **接入**：`https://ai-gateway.vercel.sh/v1`（OpenAI 兼容）；⚠️ **Jev 必须走 Evaluation 端点 `POST /v1/evaluate`**，请求体为 `{model, state, questions}`，**不能用 `chat/completions`**（2026-09-20 实测：`/v1/evaluate` 带 Jev 模型返回 `Authentication failed` 即端点正确、缺鉴权，而 `/v1/evaluations`、`/v1/decisions` 均返回 404 不存在）
-- **状态**：Active（限时促销）— 核实于 2026-09-20（⚠️ 三个必须记住的边界：①**促销 2026-09-25 结束**，页面原文 `Promotional pricing ends on September 25, 2026`；②**免费额度需先绑支付方式**，但不充值就不扣费（`Commitment: None`）；③**一旦主动购买 credits，账号转入付费档、每月 $5 免费额度永久失效**，官方原文 `Once you purchase credits, your account transitions to the paid tier and the monthly free credit no longer applies.`——建议先用完免费额度再考虑充值）
+- **状态**：Active（免费档 $5/月）— 核实于 2026-09-27（⚠️ 三个必须记住的边界：①**Jev 促销已于 2026-09-25 如期结束**（多源确认：Vercel Weekly 2026-09-21 公告原文「Jev … free to use until September 25」，到期恢复 TypeSafe 原价 $0.042/M 输入、输出 $0），**Jev 已移出免费索引**；②**免费额度需先绑支付方式**，但不充值就不扣费（`Commitment: None`）；③**一旦主动购买 credits，账号转入付费档、每月 $5 免费额度永久失效**，官方原文 `Once you purchase credits, your account transitions to the paid tier and the monthly free credit no longer applies.`——建议先用完免费额度再考虑充值；④ 免费档限流低于付费档，超限返回 429）
 
 #### OpenRouter
 
@@ -591,7 +592,7 @@
 - **网页说明**：多模型聚合路由，官网提供 `:free` 免费模型清单，`openrouter/free` 可自动路由（⚠️ 网传「200 次/天」为过时信息，官方限速页现行标准为 50/1000）
 - **免费模型**：`thinkingmachines/inkling(-small)`（1M 上下文多模态）、`nvidia/nemotron-3-ultra-550b`、`nemotron-3-super-120b`、`nemotron-3.5-lightning`、`gemma-4-26b-a4b`、`gemma-4-31b`、`inclusionai/ling-3.0-flash-sante/-fin/-vl`、`nex-agi/nex-n2.5-pro/-mini`、`cohere/north-mini-code`、`poolside/laguna-s-2.1/-xs-2.1`、`dots-studio/dots-3-note-preview`（512K）、`liquid/lfm-2.5-2.6b` 等 **19 个**（**名单随时轮换**——**DeepSeek / GLM / Qwen / MiniMax / Kimi 均不在免费名单**，用前先查 `openrouter.ai/models?max_price=0`）
 - **接入**：`https://openrouter.ai/api/v1`（模型名务必带 `:free` 后缀）
-- **状态**：Active — 核实于 2026-09-20（免费名单已实测刷新：21 个 `:free` 模型——新增 Nex AGI N2.5 mini/pro、`z-ai/glm-5.2`、Poolside Laguna 两款、Thinking Machines Inkling 两款、Ling 3.0 Flash 三款（Fin/Sante/VL）、Liquid LFM 2.5、Cohere North Mini Code、NVIDIA Nemotron 五款、Gemma 4 两款、Qwen3.8-27B；`dots-3-note-preview:free` 将于 9/30 下线。每日额度 50 次，充值 $10 后 1000 次。⚠️ 免费池一天一进一出，「发布当天进免费池」是冷启动信号而非长期承诺，务必留 fallback）
+- **状态**：Active — 核实于 2026-09-27（免费名单已实测刷新：**17 个** `:free` 模型（9/20 为 21 个）——**退出：`z-ai/glm-5.2`、Nex AGI N2.5 mini/pro、`ling-3.0-flash-vl` 共 4 款，本周无新增**；在列的仍有 Qwen3.8-27B、Gemma 4 两款、Nemotron 五款、Poolside Laguna 两款、Thinking Machines Inkling 两款、Ling 3.0 Flash Fin/Sante、Liquid LFM 2.5、Cohere North Mini Code。每日额度 50 次，充值 $10 后 1000 次。⚠️ 免费池一周可换 4 款，「发布当天进免费池」是冷启动信号而非长期承诺，务必留 fallback）
 
 #### AIHubMix
 
@@ -609,14 +610,14 @@
 - **网页说明**：OpenCode 官方模型网关，官网定价页将上述免费款明确标注为 Free，并说明"限时免费、用于收集反馈改进模型"；**并非整个平台免费**——DeepSeek / GLM / Kimi / Qwen 的正式版均为按量付费
 - **免费模型**：DeepSeek V4 Flash Free（1M 上下文）、MiMo-V2.5 Free（多模态）、Ling 3.0 Flash Fin Free、Nemotron 3 Ultra Free、Nemotron 3.5 Lightning Free、Muse Spark 1.2 / 1.3 Contributor Free、Jev 1.13 Free（判别类，走 Evaluation API）、Big Pickle（隐身模型）——共 8 款（2026-09-20 `/v1/models` 实测）
 - **接入**：`https://opencode.ai/zen/v1`（OpenAI 兼容；部分模型走 `/messages` Anthropic 协议或 `/responses`）
-- **状态**：Active（限时免费）— 核实于 2026-09-20（⚠️ `deepseek-v4-flash-free` 曾在 2026-09-11 实测显示按量计费（$0.14/$0.28），9/20 复核已回到官方免费清单（官方页列为 Free、pricing 字段已移除）——免费名单反复横跳，调用前以官网当前清单为准）
+- **状态**：Active（限时免费）— 核实于 2026-09-27（✅ `/v1/models` 目录 74 → **82 个**，`-free` 款 8 → **11 个**，新进 `space-bunny-free`、`longcat-2.5-preview-free`、`mimo-v2.6-flash-free`；⚠️ `deepseek-v4-flash-free` 曾在 2026-09-11 实测显示按量计费（$0.14/$0.28），9/20 起回到免费清单——免费名单反复横跳，调用前以官网当前清单为准）
 
 #### OrcaRouter
 
 - **官网**：[https://www.orcarouter.ai](https://www.orcarouter.ai)（[文档](https://docs.orcarouter.ai)）
 - **免费形式**：免费池按 workspace 限流（额度不公开）；**付费侧 0% token 加价**（按上游官方价转发）
 - **网页说明**：OpenAI 兼容的 LLM 路由网关，200+ 模型统一端点；免费模型是「目录模型套一层 free ID」，权重能力与付费版一致，但跑在独立限流池里——**免费池打满不会自动降级到付费版**
-- **免费模型**：`orcarouter/free`（按难度智能路由免费池）、`z-ai/glm-5.3-flash-free`、`deepseek/deepseek-v4-flash-free`、`tencent/hy3-free`（2026-09-20 复测 `/v1/models` 197 个，免费 4 款不变）
+- **免费模型**：`orcarouter/free`（按难度智能路由免费池）、`z-ai/glm-5.3-flash-free`、`deepseek/deepseek-v4-flash-free`、`tencent/hy3-free`（2026-09-27 复测 `/v1/models` 202 个，免费 4 款不变）
 - **接入**：`https://api.orcarouter.ai/v1`（OpenAI 兼容，注册免卡）
 - **状态**：Active（限流）— 核实于 2026-09-20（2026-09-07 免费默认模型由 Qwen3.8-27B 换成 GLM-5.3 Flash：质量分 4→8、上下文 262K→1M，但 TTFT 1.96s→7.66s、吞吐 196→74 tok/s；⚠️ 未充值账号日额度更小，`429 + Retry-After` = 限流、无 header 的 429 = prompt 超长；官方明示为 best-effort，非生产容量）
 
@@ -707,7 +708,7 @@
 - **网页说明**：台湾 LLM 网关，官网列「免費模型 1」并说明「免費額度，超出後自動轉為付費計價」；`auto:free` 会自动路由到当前最合适的免费模型
 - **免费模型**：`auto:free`（智能路由免费池）、`qwen/qwen3.7-flash:free`（视觉语言推理）、`deepseek/deepseek-v4-flash-0731free:free`（2026-09-20 实测新增）
 - **接入**：`https://api.bazaarlink.ai/v1`（OpenAI 兼容）
-- **状态**：Active（小型网关）— 核实于 2026-09-20（✅ 实测 `/v1/models` 175 个模型中 3 款 `*:free` 的 pricing 均为 0（auto / qwen3.7-flash / deepseek-v4-flash-0731），免费层持续有效；⚠️ 2026-09-05 起停用 agent 自助注册端点（`/api/agents/register` 返回 410）以防免费层被滥用，需正常注册账号后在面板建 key）
+- **状态**：Active（小型网关）— 核实于 2026-09-27（✅ 实测 `/v1/models` 128 个模型中 3 款 `*:free` 的 pricing 均为 0（auto / qwen3.7-flash / deepseek-v4-flash-0731），免费层持续有效 ⚠️ 但目录从 175 缩至 128，付费款下架较多；⚠️ 2026-09-05 起停用 agent 自助注册端点（`/api/agents/register` 返回 410）以防免费层被滥用，需正常注册账号后在面板建 key）
 
 ## 参与贡献
 
@@ -727,7 +728,7 @@
 以下是常见的信息偏差，我们会在条目中显式标注：
 
 - **"免费层"不等于"永久免费"。** Google 在 2025 年 12 月将 Gemini 免费额度砍掉约 80%，其他家随时可能跟进。
-- **免费名单的流动性比想象中大。** 2026-09-11 实测 OpenRouter 的 19 个 `:free` 模型中不含任何 DeepSeek / GLM / Qwen 模型，仅 9 天后（2026-09-20）名单扩到 21 个并重新纳入 GLM-5.2 与 Qwen3.8-27B；NVIDIA NIM 的 80 余个模型也多次进出 GLM、MiniMax、DeepSeek R1/V3、StepFun——收录的模型可能在你看到时已经下架，用前务必跑一次 `curl` 确认。
+- **免费名单的流动性比想象中大。** OpenRouter 的 `:free` 名单在 2026-09-11 / 09-20 / 09-27 连续三次实测为 **19 → 21 → 17 款**，`z-ai/glm-5.2` 入池仅 11 天即退出；NVIDIA NIM 数量恒为 82 却在做替换（`deepseek-v4-flash-0731` 移出、`deepseek-v4.1-flash` 移入）——收录的模型可能在你看到时已经下架，用前务必跑一次 `curl` 确认。
 - **"限时免费"随时可能结束。** 活动期 API（如曾经的 B.AI 限时免费档）没有公开的截止日期，消失也不会提前通知。
 - **部分"免费"需要绑信用卡**才能开通，或需要手机号/实名验证。例：Vercel AI Gateway 的每月 $5 免费额度，官方明确要求**先绑定有效支付方式**才可启用（`To use free AI Gateway Credits, add a valid payment method to your team.`，2026-09-20 核实）——绑卡不等于扣费，但门槛确实存在。
 - **不是所有"免费模型"都在生成文本。** Jev 这类**结构化决策模型**（输入状态 + 带类型的问题，输出选项/评分/概率）走的是 Evaluation 或 Decisions 类接口，**不能当聊天模型用**，OpenAI 兼容的 chat/completions 调用方式往往不适用。

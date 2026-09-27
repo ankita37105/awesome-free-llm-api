@@ -768,7 +768,7 @@
 
 [MIT](LICENSE)——随便 fork、改写、发布，保留版权声明即可。
 
-## 其他限免费网关
+## Limited free gateway
 
-- [APIClaw](https://apiclaw.biz/): OpenAI 兼容的 Claude、GPTKimi、QwenDeepSeek  GLM API 网，提 50 次免费试付套餐 $19-$129/。
-- 
+- [APIClaw](https://apiclaw.biz/): OpenAI-compatible Claude, GPT, Kimi, Qwen, DeepSeek, and GLM gateway; 50 free trial requests; plans $19-$129/month.
+  

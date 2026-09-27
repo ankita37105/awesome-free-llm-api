@@ -74,7 +74,6 @@
 
 | 免费渠道 | 免费形式 | 优势 / 限制 | API 质量 |
 |------|------|------|------|
-| [NVIDIA NIM](https://build.nvidia.com) | 永久免费,40 RPM 无每日上限 | 优势:官方托管、免绑卡、无每日上限;限制:40 RPM 全站共享,高峰期需排队 | 经常超时 |
 | [商汤 SenseNova](https://platform.sensenova.cn) | 公测免费,滚动 5h 60k 积分 | 优势:国产官方、公测期免费用量大、1M 上下文;限制:限时公测,付费档即将上线,随时可能转付费 |  |
 
 #### DeepSeek V4 Flash
@@ -83,7 +82,6 @@
 
 | 免费渠道 | 免费形式 | 优势 / 限制 | API 质量 |
 |------|------|------|------|
-| [NVIDIA NIM](https://build.nvidia.com) | 永久免费,40 RPM | 优势:官方托管最稳、免绑卡、无每日上限;限制:40 RPM 全站共享 | 经常超时 |
 | [OrcaRouter](https://www.orcarouter.ai) | 免费池限流,零加价 | 优势:200+ 模型统一网关、0% token 加价、免卡;限制:免费额度未公开、429 限流、best-effort 非生产可用 |  |
 | [BazaarLink](https://bazaarlink.ai) | 免费档 `deepseek-v4-flash-0731free:free`(输入/输出均 $0) | 优势:台湾网关、免绑卡、含 0731 正式版;限制:小型网关资历浅、限流使用、免费额度未公开 |  |
 | [OpenCode Zen](https://opencode.ai/zen) | 限时免费(`deepseek-v4-flash-free`) | 优势:OpenCode 官方网关、免卡、1M 上下文;限制:限时免费随时结束、免费期数据用于改进模型、名单反复横跳(9/11 曾显示计费) |  |
@@ -202,7 +200,7 @@
 |------|------|------|------|
 | [OpenCode Zen](https://opencode.ai/zen) | MiniMax M3 限时免费(客户端内) | 优势:OpenCode 官方网关;限制:仅客户端内使用,M2.7 为付费($0.3/$1.2) |  |
 
-> ⚠️ **MiniMax 系列已从 NVIDIA NIM 下架**：2026-09 初曾短暂上架 GLM-4.7 与 MiniMax M2.1，但截至 2026-09-11 两者均已从 NIM 模型列表移除。
+> ⚠️ **MiniMax 系列已从 NVIDIA NIM 下架**：2026-09 初曾短暂上架 GLM-4.7 与 MiniMax M2.1，2026-09-11 两者移除；2026-09-27 复测 **MiniMax M3 也不在列**（NIM 目录已无任何 minimax 条目）。
 
 #### MiniMax M3
 
@@ -212,7 +210,6 @@
 |------|------|------|------|
 | [AIHubMix](https://aihubmix.com/models/free) | $1 开通:每日 100 次/1M token | 优势:平台补贴免费、OpenAI 兼容、免卡注册;限制:未充值仅 10 次试用;全免费模型共享额度,部分模型配额更低 |  |
 | [OpenCode Zen](https://opencode.ai/zen) | 限时免费(客户端内) | 优势:OpenCode 官方网关、免卡;限制:限时免费,仅客户端内使用 |  |
-| [NVIDIA NIM](https://build.nvidia.com) | 永久免费(官方标注即将弃用) | 优势:官方托管、免绑卡;限制:官网标注即将弃用,慎用 | 经常超时 |
 
 #### MiniMax M2.1
 
@@ -370,7 +367,7 @@
 |------|------|------|------|
 | [OpenRouter](https://openrouter.ai) | `:free`（31B 与 26B-A4B 两款） | 优势:聚合路由;限制:免费仅 50 次/天,名单随时轮换 |  |
 | [AIHubMix](https://aihubmix.com/models/free) | $1 开通:每日 100 次/1M token | 优势:平台补贴免费、OpenAI 兼容、免卡注册;限制:未充值仅 10 次试用;全免费模型共享额度,部分模型配额更低 |  |
-| [NVIDIA NIM](https://build.nvidia.com) | 永久免费 | 优势:官方托管、免绑卡;限制:40 RPM 全站共享 | 经常超时 |
+| [NVIDIA NIM](https://build.nvidia.com) | 永久免费(仅 31B) | 优势:官方托管、免绑卡;限制:40 RPM 全站共享,NIM 仅托管 `gemma-4-31b-it`,无 26B-A4B | 经常超时 |
 
 #### Whisper
 
@@ -398,7 +395,7 @@
 | [OpenRouter](https://openrouter.ai) | `:free` 名单轮换,可能不含 | 优势:一站式聚合、OpenAI 兼容;限制:免费仅 50 次/天($10 后 1000),名单随时轮换 |  |
 | [魔搭 ModelScope](https://modelscope.cn) | R1 约 200 次/日 | 优势:国产、模型全;限制:免费质量较低——R1 仅约 200 次/日,与全站共享 2000 次总量,需阿里云实名,仅限个人非商业用途 | 质量较低 |
 
-> ⚠️ **DeepSeek R1 / V3 已不在 NVIDIA NIM**：截至 2026-09-11 已从 NIM 模型列表移除（仅剩 V4 Flash 0731 与 V4 Pro 0813）。
+> ⚠️ **DeepSeek R1 / V3 已不在 NVIDIA NIM**：2026-09-11 起从 NIM 模型列表移除；2026-09-27 复测，NIM 上的 DeepSeek 只剩 `deepseek-ai/deepseek-v4.1-flash` 与 `deepseek-coder-6.7b-instruct`，V4 Flash 0731、V4 Pro 0813 均已下架。
 
 #### DeepSeek R2
 
@@ -418,9 +415,9 @@
 - **官网**：https://build.nvidia.com
 - **免费形式**：永久免费层（40 RPM 全站共享，无每日上限）
 - **网页说明**：官网称「100+ 模型免费调用」——NVIDIA 托管的推理端点，注册即可用，无需信用卡
-- **免费模型**：**`deepseek-ai/deepseek-v4.1-flash`（2026-09-27 新上架）** / V4 Pro 0813、Kimi K2.6 / K3、**z-ai/glm-5.3-flash**、Gemma 4 31B、Nemotron 3 Ultra / Super / Nano、GPT-OSS、Mistral Large 等（以 `/v1/models` 实测为准；⚠️ **`deepseek-v4-flash-0731` 已从列表移除**）
+- **免费模型**：**`deepseek-ai/deepseek-v4.1-flash`（2026-09-27 新上架）**、**`z-ai/glm-5.3` / `z-ai/glm-5.3-flash`**、`moonshotai/kimi-k2.6`、`moonshotai/kimi-k3`、`google/gemma-4-31b-it`、`nvidia/nemotron-3-ultra-550b` / `nemotron-3-super-120b` / `nemotron-3.5-lightning-30b`、`openai/gpt-oss-20b`、`mistralai/mistral-large` / `mistral-large-2-instruct`、`poolside/laguna-xs-2.1` 等（以 `/v1/models` 实测为准；⚠️ **V4 Flash 0731、V4 Pro 0813、MiniMax M3 均已下架**）
 - **接入**：`https://integrate.api.nvidia.com/v1`（OpenAI 兼容）
-- **状态**：Active — 核实于 2026-09-27（实测 `/v1/models` 返回 **82 个模型**（数量不变但有替换）；✅ **新上架 `deepseek-ai/deepseek-v4.1-flash`**——即此前「V4.1 Flash 无免费入口」的结论对 NIM 已失效，**NIM 现为 V4.1 Flash 少数可用免费渠道之一**；⚠️ **同批移除 `deepseek-v4-flash-0731`**，V4 Flash 改用 `deepseek-coder-6.7b-instruct` 之外无 0731 档；MiniMax / Qwen / StepFun / Ling 仍不在列，GLM 5.2 / 5.1 / 4.7 亦未回归）
+- **状态**：Active — 核实于 2026-09-27（实测 `/v1/models` 返回 **82 个模型**，与 9/12 同为 82 但**成员大幅换血**：✅ 新上架 `deepseek-ai/deepseek-v4.1-flash`、`z-ai/glm-5.3`；❌ **移除 `deepseek-v4-flash-0731`、`deepseek-v4-pro-0813`、全部 MiniMax 条目**。NIM 上 DeepSeek 现仅剩 V4.1 Flash 与 `deepseek-coder-6.7b-instruct` 两款，**V4 Flash / V4 Pro 在 NIM 已无可用免费档**；MiniMax / Qwen / StepFun / Ling 仍不在列，GLM 5.2 / 5.1 / 4.7 亦未回归。⚠️ 数量不变不代表阵容不变，务必逐款核对模型 ID）
 
 #### Google AI Studio
 
@@ -728,7 +725,7 @@
 以下是常见的信息偏差，我们会在条目中显式标注：
 
 - **"免费层"不等于"永久免费"。** Google 在 2025 年 12 月将 Gemini 免费额度砍掉约 80%，其他家随时可能跟进。
-- **免费名单的流动性比想象中大。** OpenRouter 的 `:free` 名单在 2026-09-11 / 09-20 / 09-27 连续三次实测为 **19 → 21 → 17 款**，`z-ai/glm-5.2` 入池仅 11 天即退出；NVIDIA NIM 数量恒为 82 却在做替换（`deepseek-v4-flash-0731` 移出、`deepseek-v4.1-flash` 移入）——收录的模型可能在你看到时已经下架，用前务必跑一次 `curl` 确认。
+- **免费名单的流动性比想象中大。** OpenRouter 的 `:free` 名单在 2026-09-11 / 09-20 / 09-27 连续三次实测为 **19 → 21 → 17 款**，`z-ai/glm-5.2` 入池仅 11 天即退出；NVIDIA NIM 数量两次都恒为 82，成员却换了一批（`deepseek-v4-flash-0731` 与 `deepseek-v4-pro-0813` 移出、`deepseek-v4.1-flash` 与 `glm-5.3` 移入）——收录的模型可能在你看到时已经下架，用前务必跑一次 `curl` 确认。
 - **"限时免费"随时可能结束。** 活动期 API（如曾经的 B.AI 限时免费档）没有公开的截止日期，消失也不会提前通知。
 - **部分"免费"需要绑信用卡**才能开通，或需要手机号/实名验证。例：Vercel AI Gateway 的每月 $5 免费额度，官方明确要求**先绑定有效支付方式**才可启用（`To use free AI Gateway Credits, add a valid payment method to your team.`，2026-09-20 核实）——绑卡不等于扣费，但门槛确实存在。
 - **不是所有"免费模型"都在生成文本。** Jev 这类**结构化决策模型**（输入状态 + 带类型的问题，输出选项/评分/概率）走的是 Evaluation 或 Decisions 类接口，**不能当聊天模型用**，OpenAI 兼容的 chat/completions 调用方式往往不适用。
